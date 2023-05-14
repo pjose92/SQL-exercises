@@ -1,0 +1,96 @@
+This SQL code creates two tables, "artists" and "songs", and then inserts data into these tables.
+
+The "artists" table has columns for "id" (an auto-incrementing primary key), "name" (the name of the artist), 
+"country" (the country the artist is from), and "genre" (the genre of music the artist plays).
+
+The "songs" table has columns for "id" (an auto-incrementing primary key), "artist" (the name of the artist who 
+recorded the song), and "title" (the title of the song).
+
+The INSERT statements are used to add data to the tables. For example, data on various artists such as "Taylor Swift", 
+"ABBA", "Queen" and "Bob Marley" is added to the "artists" table, and data on some of their popular songs like "Shake it off", 
+"Mamma mia", "Bohemian Rhapsody" and "My heart will go on" is added to the "songs" table.
+
+The SQL statements following the INSERT statements are used to query the data from the tables.
+
+The first SELECT statement retrieves all the song titles from the "songs" table where the artist is "Queen".
+
+The second SELECT statement retrieves all the artist names from the "artists" table where the genre is "Pop".
+
+The third SELECT statement retrieves all the song titles from the "songs" table where the artist is in the "Pop" genre, 
+which is determined by the nested subquery that first retrieves all the artist names from the "artists" table that have the 
+genre "Pop" and then matches them with the artist names in the "songs" table.
+
+CREATE TABLE artists (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    country TEXT,
+    genre TEXT);
+
+INSERT INTO artists (name, country, genre)
+    VALUES ("Taylor Swift", "US", "Pop");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Led Zeppelin", "US", "Hard rock");
+INSERT INTO artists (name, country, genre)
+    VALUES ("ABBA", "Sweden", "Disco");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Queen", "UK", "Rock");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Celine Dion", "Canada", "Pop");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Meatloaf", "US", "Hard rock");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Garth Brooks", "US", "Country");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Shania Twain", "Canada", "Country");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Rihanna", "US", "Pop");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Guns N' Roses", "US", "Hard rock");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Gloria Estefan", "US", "Pop");
+INSERT INTO artists (name, country, genre)
+    VALUES ("Bob Marley", "Jamaica", "Reggae");
+
+CREATE TABLE songs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    artist TEXT,
+    title TEXT);
+
+INSERT INTO songs (artist, title)
+    VALUES ("Taylor Swift", "Shake it off");
+INSERT INTO songs (artist, title)
+    VALUES ("Rihanna", "Stay");
+INSERT INTO songs (artist, title)
+    VALUES ("Celine Dion", "My heart will go on");
+INSERT INTO songs (artist, title)
+    VALUES ("Celine Dion", "A new day has come");
+INSERT INTO songs (artist, title)
+    VALUES ("Shania Twain", "Party for two");
+INSERT INTO songs (artist, title)
+    VALUES ("Gloria Estefan", "Conga");
+INSERT INTO songs (artist, title)
+    VALUES ("Led Zeppelin", "Stairway to heaven");
+INSERT INTO songs (artist, title)
+    VALUES ("ABBA", "Mamma mia");
+INSERT INTO songs (artist, title)
+    VALUES ("Queen", "Bicycle Race");
+INSERT INTO songs (artist, title)
+    VALUES ("Queen", "Bohemian Rhapsody");
+INSERT INTO songs (artist, title)
+    VALUES ("Guns N' Roses", "Don't cry");
+    
+SELECT title 
+FROM songs 
+WHERE artist = "Queen";
+
+SELECT name 
+FROM artists
+WHERE genre LIKE "Pop"; 
+
+SELECT title 
+FROM songs 
+WHERE artist
+LIKE(SELECT name 
+FROM artists
+WHERE genre LIKE "Pop")
+
