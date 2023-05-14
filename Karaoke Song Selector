@@ -1,3 +1,10 @@
+The provided SQL code is creating a table called "songs" with six columns: "id" (integer), "title" (text), "artist" (text), "mood" (text), "duration" (integer), and "released" (integer). The "id" column is set as the primary key.
+
+After the table is created, the code inserts eight rows of data into the "songs" table using the "INSERT INTO" statement, with each row containing information on a specific song including the title, artist, mood, duration (in seconds), and release year.
+
+The code then performs three queries on the "songs" table using the "SELECT" statement. The first query selects only the "title" column from all rows in the "songs" table. The second query selects only the "title" column from rows where the "mood" is "epic" or the "released" year is greater than 1990. The third query selects only the "title" column from rows where the "mood" is "epic", the "released" year is greater than 1990, and the "duration" is less than 240 seconds.
+
+
 CREATE TABLE songs (
     id INTEGER PRIMARY KEY,
     title TEXT,
