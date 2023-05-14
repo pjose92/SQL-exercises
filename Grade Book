@@ -1,0 +1,68 @@
+The SQL script includes a create table statement that creates a table named student_grades with four 
+columns: id, name, number_grade, and fraction_completed. The id column is set as the primary key and is 
+automatically incremented with each new record added to the table.
+
+The next six statements are INSERT INTO statements that add data to the student_grades table. The data includes 
+six records with the name, number grade, and fraction completed for each student.
+
+The first SELECT statement queries the student_grades table to retrieve the name, number_grade, and percent_completed 
+for each student. The percent_completed column is derived by multiplying the fraction_completed column by 100 and then 
+rounding the result to the nearest integer using the ROUND function.
+
+The second SELECT statement queries the student_grades table to retrieve the name, number_grade, and letter_grade for each student. 
+The letter_grade column is derived using a CASE statement that assigns letter grades based on the student's number grade. Students 
+with a number grade of 90 or higher receive an "A", students with a number grade of 80 or higher receive a "B", students with a number 
+grade of 70 or higher receive a "C", and all other students receive an "F".
+
+The third SELECT statement queries the student_grades table to retrieve the count of students for each letter grade. The COUNT 
+function is used to count the number of records in each group, and the GROUP BY clause groups the records by the letter_grade column. 
+The letter_grade column is derived using the same CASE statement as the second SELECT statement.
+
+
+
+CREATE TABLE student_grades (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    number_grade INTEGER,
+    fraction_completed REAL);
+    
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winston", 90, 0.805);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winnefer", 95, 0.901);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winsteen", 85, 0.906);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Wincifer", 66, 0.7054);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winster", 76, 0.5013);
+INSERT INTO student_grades (name, number_grade, fraction_completed)
+    VALUES ("Winstonia", 82, 0.9045);
+
+SELECT name, number_grade, 
+ROUND(fraction_completed * 100) 
+AS percent_completed 
+FROM student_grades;
+
+SELECT name, number_grade,
+CASE
+WHEN number_grade > 90 THEN 'A'
+WHEN number_grade > 80 THEN 'B'
+WHEN number_grade > 70 THEN 'C'
+ELSE 'F'
+END 
+AS letter_grade 
+FROM student_grades;
+
+SELECT COUNT(*),
+CASE 
+WHEN number_grade > 90 THEN 'A'
+WHEN number_grade > 80 THEN 'B'
+WHEN number_grade > 70 THEN 'C'
+ELSE 'F'
+END 
+AS letter_grade 
+FROM student_grades
+
+GROUP BY letter_grade;
+
