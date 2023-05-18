@@ -1,0 +1,43 @@
+The provided SQL code creates three tables: students, student_grades, and student_projects. The students table contains information 
+such as the student's ID, first name, last name, email, phone number, and birthdate. The student_grades table stores the grades of 
+each student, including the test name and the corresponding grade. The student_projects table keeps track of the projects assigned to 
+students, recording the project's ID, the student's ID, and the project's title. The INSERT statements populate the tables with sample
+data, assigning students their respective grades and projects. Overall, these tables and their associated data provide a structured way 
+to manage student information, grades, and projects within a database.
+
+
+
+
+CREATE TABLE students (id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    email TEXT,
+    phone TEXT,
+    birthdate TEXT);
+
+INSERT INTO students (first_name, last_name, email, phone, birthdate)
+    VALUES ("Peter", "Rabbit", "peter@rabbit.com", "555-6666", "2002-06-24");
+INSERT INTO students (first_name, last_name, email, phone, birthdate)
+    VALUES ("Alice", "Wonderland", "alice@wonderland.com", "555-4444", "2002-07-04");
+    
+CREATE TABLE student_grades (id INTEGER PRIMARY KEY,
+    student_id INTEGER,
+    test TEXT,
+    grade INTEGER);
+
+INSERT INTO student_grades (student_id, test, grade)
+    VALUES (1, "Nutrition", 95);
+INSERT INTO student_grades (student_id, test, grade)
+    VALUES (2, "Nutrition", 92);
+INSERT INTO student_grades (student_id, test, grade)
+    VALUES (1, "Chemistry", 85);
+INSERT INTO student_grades (student_id, test, grade)
+    VALUES (2, "Chemistry", 95);
+
+CREATE TABLE student_projects (id INTEGER PRIMARY KEY,
+    student_id INTEGER,
+    title TEXT);
+    
+INSERT INTO student_projects (student_id, title)
+    VALUES (1, "Carrotapault");
+    
